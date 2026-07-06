@@ -34,3 +34,5 @@ Desktop.ini
 *.ntvs*
 *.njsproj
 *.sln
+
+/generated/prisma
