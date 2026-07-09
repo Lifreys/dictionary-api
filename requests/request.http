@@ -1,0 +1,7 @@
+### Создание новой категории
+POST http://localhost:3000/categories
+Content-Type: application/json
+
+{
+  "name": "Frontend"
+}
