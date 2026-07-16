@@ -16,6 +16,19 @@ class CategoryService {
             where: { id },
         });
     }
+
+    async update(id: number, name: string) {
+        return await prisma.category.update({
+            where: { id },
+            data: { name },
+        });
+    }
+
+    async delete(id: number) {
+        return await prisma.category.delete({
+            where: { id },
+        });
+    }
 }
 
 export const categorySevice = new CategoryService();

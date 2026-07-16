@@ -9,8 +9,19 @@ Content-Type: application/json
 ### Получить все категории
 GET http://localhost:3000/categories
 
-### Получить категориб по ID (Например по ID 1)
-GET http://localhost:3000/categories/1
+### Получить категорию
+GET http://localhost:3000/categories/3
 
 ### Проверка на несуществующую категорию
 GET http://localhost:3000/categories/1111111111
+
+### Обновить категорию
+PUT http://localhost:3000/categories/3
+Content-Type: application/json
+
+{
+  "name": "Fullstack"
+}
+
+### Удалить категорию
+DELETE http://localhost:3000/categories/3
