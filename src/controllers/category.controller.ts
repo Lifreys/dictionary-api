@@ -21,4 +21,36 @@ export const createCategory = async (req: Request, res: Response) => {
     }
 
     res.status(500).json({error: 'Internal Server Error'});
-}
+};
+
+export const getCategories = async (req: Request, res: Response) => {
+    try {
+        const categories = await categorySevice.findAll();
+        res.status(200).json(categories);
+    } catch (error) {
+        res.status(500).json({error: 'Internal Server Error'});
+    }
+};
+
+export const getCategoryById = async (req: Request, res: Response) => {
+    try {
+        const id = Number(req.params.id);
+
+        if (isNaN(id)) {
+            res.status(400).json({error: 'Invalid ID parameter'});
+            return;
+        }
+
+        const category = await categorySevice.findById(id);
+
+        if (!category) {
+            res.status(404).json({error: 'Category not found'});
+            return;
+        }
+
+        res.status(200).json(category);
+    } catch (error) {
+        res.status(500).json({error: 'Internal Server Error'});
+    }
+};
+

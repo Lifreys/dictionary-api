@@ -1,7 +1,16 @@
-### Создание новой категории
+### Создать новую категорию
 POST http://localhost:3000/categories
 Content-Type: application/json
 
 {
-  "name": "Frontend"
+  "name": "Backend"
 }
+
+### Получить все категории
+GET http://localhost:3000/categories
+
+### Получить категориб по ID (Например по ID 1)
+GET http://localhost:3000/categories/1
+
+### Проверка на несуществующую категорию
+GET http://localhost:3000/categories/1111111111
