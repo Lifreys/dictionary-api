@@ -1,0 +1,9 @@
+model Term {
+  id          Int      @id @default(autoincrement())
+  name        String   @unique
+  definition  String
+  categoryId  Int
+  category    Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}

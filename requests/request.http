@@ -10,7 +10,7 @@ Content-Type: application/json
 GET http://localhost:3000/categories
 
 ### Получить категорию
-GET http://localhost:3000/categories/3
+GET http://localhost:3000/categories/1
 
 ### Проверка на несуществующую категорию
 GET http://localhost:3000/categories/1111111111
@@ -25,3 +25,25 @@ Content-Type: application/json
 
 ### Удалить категорию
 DELETE http://localhost:3000/categories/3
+
+
+
+### Создать новый термин
+POST http://localhost:3000/terms
+Content-Type: application/json
+
+{
+  "name": "Closure",
+  "definition": "A closure is the combination of a function bundled together with references to its surrounding state.",
+  "categoryId": 1
+}
+
+### Тест ошибки: создание термина с несуществующей категорией
+POST http://localhost:3000/terms
+Content-Type: application/json
+
+{
+  "name": "Hydration",
+  "definition": "Client-side JavaScript takes over the static HTML.",
+  "categoryId": 9999
+}
