@@ -1,8 +1,8 @@
 import { Router } from "express";
 import {
-    createTerm,
+    createTerm, deleteTerm,
     getTermById,
-    getTerms
+    getTerms, updateTerm
 } from "../controllers/term.controller.ts";
 
 const router = Router();
@@ -10,5 +10,7 @@ const router = Router();
 router.post('/', createTerm);
 router.get('/', getTerms);
 router.get('/:id', getTermById);
+router.put('/:id', updateTerm);
+router.delete('/:id', deleteTerm);
 
 export default router;

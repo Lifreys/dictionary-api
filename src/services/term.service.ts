@@ -31,6 +31,24 @@ class TermService {
             },
         });
     }
+
+    async update(id: number, data: { name?: string; definition?: string; categoryId?: number }) {
+        return await prisma.term.update({
+            where: { id },
+            data,
+            include: {
+                category: {
+                    select: { id: true, name: true },
+                },
+            },
+        });
+    }
+
+    async delete(id: number) {
+        return await prisma.term.delete({
+            where: { id },
+        });
+    }
 }
 
 export const termService = new TermService();

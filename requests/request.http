@@ -52,5 +52,16 @@ Content-Type: application/json
 GET http://localhost:3000/terms
 
 ### Получить термин по ID
-GET http://localhost:3000/terms/3
+GET http://localhost:3000/terms/1
 
+### Обновить термин
+PUT http://localhost:3000/terms/1
+Content-Type: application/json
+
+{
+  "name": "Closure (Updated)",
+  "definition": "Updated definition of closure"
+}
+
+### Удалить термин
+DELETE http://localhost:3000/terms/1
