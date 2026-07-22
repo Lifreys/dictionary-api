@@ -37,3 +37,34 @@ export const createTerm = async (req: Request, res: Response) => {
         res.status(500).json({ error: 'Internal server error' });
     }
 }
+
+export const getTerms = async (req: Request, res: Response) => {
+    try {
+        const terms = await termService.findAll();
+        res.status(200).json(terms);
+    } catch (error) {
+        res.status(500).json({ error: 'Internal server error' });
+    }
+}
+
+export const getTermById = async (req: Request, res: Response) => {
+    try {
+        const id = Number(req.params.id);
+
+        if (isNaN(id)) {
+            res.status(400).json({ error: 'Invalid ID parameter' });
+            return;
+        }
+
+        const term = await termService.findById(id);
+
+        if (!term) {
+            res.status(404).json({ error: 'Term not found' });
+            return;
+        }
+
+        res.status(200).json(term);
+    } catch (error) {
+        res.status(500).json({ error: 'Internal server error' });
+    }
+}

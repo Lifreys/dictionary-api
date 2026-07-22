@@ -10,6 +10,27 @@ class TermService {
             },
         });
     }
+
+    async findAll() {
+        return await prisma.term.findMany({
+            include: {
+                category: {
+                    select: { id: true, name: true },
+                },
+            },
+        });
+    }
+
+    async findById(id: number) {
+        return await prisma.term.findUnique({
+            where: { id },
+            include: {
+                category: {
+                    select: { id: true, name: true },
+                }
+            },
+        });
+    }
 }
 
 export const termService = new TermService();

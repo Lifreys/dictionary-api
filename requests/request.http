@@ -47,3 +47,10 @@ Content-Type: application/json
   "definition": "Client-side JavaScript takes over the static HTML.",
   "categoryId": 9999
 }
+
+### Получить все термины
+GET http://localhost:3000/terms
+
+### Получить термин по ID
+GET http://localhost:3000/terms/3
+
