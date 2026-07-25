@@ -33,9 +33,9 @@ POST http://localhost:3000/terms
 Content-Type: application/json
 
 {
-  "name": "Closure",
-  "definition": "A closure is the combination of a function bundled together with references to its surrounding state.",
-  "categoryId": 1
+  "name": "Something",
+  "definition": "Something",
+  "categoryId": 9
 }
 
 ### Тест ошибки: создание термина с несуществующей категорией
@@ -65,3 +65,17 @@ Content-Type: application/json
 
 ### Удалить термин
 DELETE http://localhost:3000/terms/1
+
+
+
+### Поиск по слову
+GET http://localhost:3000/terms?search=closure
+
+### Фильтрация по ID категории
+GET http://localhost:3000/terms?categoryId=1
+
+### Комбинированный поиск: слово + конкретная категория
+GET http://localhost:3000/terms?search=hydration&categoryId=1
+
+### Поиск несуществующего слова
+GET http://localhost:3000/terms?search=123123123123

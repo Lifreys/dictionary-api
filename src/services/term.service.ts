@@ -1,5 +1,10 @@
 import { prisma } from "../db/prisma.ts";
 
+interface FindAllParams {
+    search?: string;
+    categoryId?: number;
+}
+
 class TermService {
     async create(name: string, definition: string, categoryId: number) {
         return await prisma.term.create({
@@ -11,12 +16,28 @@ class TermService {
         });
     }
 
-    async findAll() {
+    async findAll(params: FindAllParams = {}) {
+        const { search, categoryId } = params;
+
         return await prisma.term.findMany({
+            where: {
+                ...(categoryId ? { categoryId } : {}),
+                ...(search ?
+                    {
+                        OR: [
+                            { name: { contains: search, mode: 'insensitive' } },
+                            { definition: { contains: search, mode: 'insensitive' } },
+                        ],
+                    }
+                    : {}),
+            },
             include: {
                 category: {
                     select: { id: true, name: true },
                 },
+            },
+            orderBy: {
+                createdAt: 'desc',
             },
         });
     }

@@ -40,7 +40,22 @@ export const createTerm = async (req: Request, res: Response) => {
 
 export const getTerms = async (req: Request, res: Response) => {
     try {
-        const terms = await termService.findAll();
+        const { search, categoryId } = req.query;
+
+        let parsedCategoryId: number | undefined;
+        if (categoryId) {
+            parsedCategoryId = Number(categoryId);
+            if (isNaN(parsedCategoryId)) {
+                res.status(400).json({ error: 'categoryId parameter must be a number' });
+                return;
+            }
+        }
+
+        const terms = await termService.findAll({
+            search: search ? String(search) : undefined,
+            categoryId: parsedCategoryId,
+        });
+
         res.status(200).json(terms);
     } catch (error) {
         res.status(500).json({ error: 'Internal server error' });
